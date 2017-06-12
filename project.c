@@ -7,13 +7,13 @@
 #define NOI 3
 #define CHN 1
 #define NOK 40
-
+#define IN = 1054;
 
 
 #define NUM_OF_TILES (IN-2)*(IN-2)/16
 #define TD 6
 
-long static int IN = 1054;
+
 float u[NOK][CHN][F1*2][F1*2]={0};
 float v[NOI][CHN][NUM_OF_TILES][TD][TD]={0};
 float m[NOK][NUM_OF_TILES][TD][TD]={0};
