@@ -1,0 +1,52 @@
+tommaso@DANTEALIGHIERI:~/Documenti/Università/ACA$ valgrind --tool=cachegrind ./normalConv
+==3156== Cachegrind, a cache and branch-prediction profiler
+==3156== Copyright (C) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
+==3156== Using Valgrind-3.12.0.SVN and LibVEX; rerun with -h for copyright info
+==3156== Command: ./normalConv
+==3156== 
+--3156-- warning: L3 cache found, using its data for the LL simulation.
+tempo convoluzione normale = 280.181402
+
+==3156== 
+==3156== I   refs:      33,924,817,709
+==3156== I1  misses:             1,099
+==3156== LLi misses:             1,095
+==3156== I1  miss rate:           0.00%
+==3156== LLi miss rate:           0.00%
+==3156== 
+==3156== D   refs:      11,132,495,729  (10,261,464,653 rd   + 871,031,076 wr)
+==3156== D1  misses:         7,736,206  (     7,360,605 rd   +     375,601 wr)
+==3156== LLd misses:         1,953,388  (     1,577,826 rd   +     375,562 wr)
+==3156== D1  miss rate:            0.1% (           0.1%     +         0.0%  )
+==3156== LLd miss rate:            0.0% (           0.0%     +         0.0%  )
+==3156== 
+==3156== LL refs:            7,737,305  (     7,361,704 rd   +     375,601 wr)
+==3156== LL misses:          1,954,483  (     1,578,921 rd   +     375,562 wr)
+==3156== LL miss rate:             0.0% (           0.0%     +         0.0%  )
+tommaso@DANTEALIGHIERI:~/Documenti/Università/ACA$ valgrind --tool=cachegrind ./winoConv
+==3213== Cachegrind, a cache and branch-prediction profiler
+==3213== Copyright (C) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
+==3213== Using Valgrind-3.12.0.SVN and LibVEX; rerun with -h for copyright info
+==3213== Command: ./winoConv
+==3213== 
+--3213-- warning: L3 cache found, using its data for the LL simulation.
+tempo convoluzione wino = 199.658688
+
+==3213== 
+==3213== I   refs:      21,904,146,396
+==3213== I1  misses:             1,270
+==3213== LLi misses:             1,267
+==3213== I1  miss rate:           0.00%
+==3213== LLi miss rate:           0.00%
+==3213== 
+==3213== D   refs:       6,039,005,790  (5,652,124,119 rd   + 386,881,671 wr)
+==3213== D1  misses:        24,039,872  (   20,491,938 rd   +   3,547,934 wr)
+==3213== LLd misses:         7,427,449  (    3,881,589 rd   +   3,545,860 wr)
+==3213== D1  miss rate:            0.4% (          0.4%     +         0.9%  )
+==3213== LLd miss rate:            0.1% (          0.1%     +         0.9%  )
+==3213== 
+==3213== LL refs:           24,041,142  (   20,493,208 rd   +   3,547,934 wr)
+==3213== LL misses:          7,428,716  (    3,882,856 rd   +   3,545,860 wr)
+==3213== LL miss rate:             0.0% (          0.0%     +         0.9%  )
+tommaso@DANTEALIGHIERI:~/Documenti/Università/ACA$ 
+
