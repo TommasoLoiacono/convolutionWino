@@ -5,9 +5,9 @@
 #define F1 3
 #define F2 3
 #define NOI 3
-#define CHN 1
-#define NOK 40
-#define IN = 1054;
+#define CHN 3
+#define NOK 10
+#define IN 1054
 
 
 #define NUM_OF_TILES (IN-2)*(IN-2)/16
@@ -16,8 +16,8 @@
 
 float u[NOK][CHN][F1*2][F1*2]={0};
 float v[NOI][CHN][NUM_OF_TILES][TD][TD]={0};
-float m[NOK][NUM_OF_TILES][TD][TD]={0};
-float y[NOK][NUM_OF_TILES][TD][TD]={0};
+float m[NOI][NOK][NUM_OF_TILES][TD][TD]={0};
+float y[NOI][NOK][NUM_OF_TILES][TD][TD]={0};
 
 float filter[NOK][CHN][F1][F2]={0};
 float inp[NOI][CHN][IN][IN]={0};
@@ -135,7 +135,7 @@ void calc_v33(float inp[NOI][CHN][IN][IN],float v[NOI][CHN][NUM_OF_TILES][TD][TD
 }
 
 //Multiplication of u and v element wise    
-void calc_Elem_wise(float u[NOK][CHN][TD][TD], float v[NOI][CHN][NUM_OF_TILES][TD][TD],float m[NOK][NUM_OF_TILES][TD][TD], int numImg){
+void calc_Elem_wise(float u[NOK][CHN][TD][TD], float v[NOI][CHN][NUM_OF_TILES][TD][TD],float m[NOI][NOK][NUM_OF_TILES][TD][TD], int numImg){
 	
     for (int nk=0;nk<NOK;nk++){
 		for(int ch=0;ch<CHN;ch++){
@@ -143,7 +143,7 @@ void calc_Elem_wise(float u[NOK][CHN][TD][TD], float v[NOI][CHN][NUM_OF_TILES][T
 				for(int j=0;j<TD;j++){
 					 for(int k=0;k<TD;k++){
 						 
-						 m[nk][i][j][k]=m[nk][i][j][k]+u[nk][ch][j][k]*v[numImg][ch][i][j][k];
+						 m[numImg][nk][i][j][k]=m[numImg][nk][i][j][k]+u[nk][ch][j][k]*v[numImg][ch][i][j][k];
 					
 					}
 				}
@@ -153,26 +153,26 @@ void calc_Elem_wise(float u[NOK][CHN][TD][TD], float v[NOI][CHN][NUM_OF_TILES][T
 }
 
 //Calculate final result multiplying with a  
-void    calc_y(float m[NOK][NUM_OF_TILES][TD][TD],float y[NOK][NUM_OF_TILES][TD][TD]){
+void    calc_y(float m[NOI][NOK][NUM_OF_TILES][TD][TD],float y[NOI][NOK][NUM_OF_TILES][TD][TD],int numImg){
 
     float t[TD][TD];
 	for(int nk=0; nk<NOK; nk++){
 		for(int i=0;i<NUM_OF_TILES;i++){
 			for(int j=0;j<TD;j++){
 			   
-				t[0][j]=m[nk][i][0][j]+m[nk][i][1][j]+m[nk][i][2][j]+m[nk][i][3][j]+m[nk][i][4][j];
-				t[1][j]=m[nk][i][1][j]-m[nk][i][2][j]+2*(m[nk][i][3][j]-m[nk][i][4][j]);
-				t[2][j]=m[nk][i][1][j]+m[nk][i][2][j]+4*(m[nk][i][3][j]+m[nk][i][4][j]);
-				t[3][j]=m[nk][i][1][j]-m[nk][i][2][j]+8*(m[nk][i][3][j]-m[nk][i][4][j])+m[nk][i][5][j];
+				t[0][j]=m[numImg][nk][i][0][j]+m[numImg][nk][i][1][j]+m[numImg][nk][i][2][j]+m[numImg][nk][i][3][j]+m[numImg][nk][i][4][j];
+				t[1][j]=m[numImg][nk][i][1][j]-m[numImg][nk][i][2][j]+2*(m[numImg][nk][i][3][j]-m[numImg][nk][i][4][j]);
+				t[2][j]=m[numImg][nk][i][1][j]+m[numImg][nk][i][2][j]+4*(m[numImg][nk][i][3][j]+m[numImg][nk][i][4][j]);
+				t[3][j]=m[numImg][nk][i][1][j]-m[numImg][nk][i][2][j]+8*(m[numImg][nk][i][3][j]-m[numImg][nk][i][4][j])+m[numImg][nk][i][5][j];
 
 			}
 		  
 			for(int j=0;j<TD;j++){
 				
-				y[nk][i][j][0]=t[j][0]+t[j][1]+t[j][2]+t[j][3]+t[j][4];
-				y[nk][i][j][1]=t[j][1]-t[j][2]+2*(t[j][3]-t[j][4]);
-				y[nk][i][j][2]=t[j][1]+t[j][2]+4*(t[j][3]+t[j][4]);
-				y[nk][i][j][3]=t[j][1]-t[j][2]+8*(t[j][3]-t[j][4])+t[j][5];
+				y[numImg][nk][i][j][0]=t[j][0]+t[j][1]+t[j][2]+t[j][3]+t[j][4];
+				y[numImg][nk][i][j][1]=t[j][1]-t[j][2]+2*(t[j][3]-t[j][4]);
+				y[numImg][nk][i][j][2]=t[j][1]+t[j][2]+4*(t[j][3]+t[j][4]);
+				y[numImg][nk][i][j][3]=t[j][1]-t[j][2]+8*(t[j][3]-t[j][4])+t[j][5];
 			
 			}
 			
@@ -188,7 +188,7 @@ void conv33(float inp[NOI][CHN][IN][IN],float filter[NOK][CHN][F1][F2]){
 	
 	for (int i=0; i<NOI; i++){	
 		calc_Elem_wise(u,v,m,i);
-		calc_y(m,y);
+		calc_y(m,y,i);
 	}
     
 }
