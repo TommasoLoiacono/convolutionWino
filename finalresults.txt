@@ -1,0 +1,101 @@
+tommaso@DANTEALIGHIERI:~/Documenti/Università/ACA$ valgrind --tool=cachegrind ./normalconv33
+==7511== Cachegrind, a cache and branch-prediction profiler
+==7511== Copyright (C) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
+==7511== Using Valgrind-3.12.0.SVN and LibVEX; rerun with -h for copyright info
+==7511== Command: ./normalconv33
+==7511== 
+--7511-- warning: L3 cache found, using its data for the LL simulation.
+tempo convoluzione normale = 609.129372
+
+==7511== 
+==7511== I   refs:      82,604,716,684
+==7511== I1  misses:             1,099
+==7511== LLi misses:             1,094
+==7511== I1  miss rate:           0.00%
+==7511== LLi miss rate:           0.00%
+==7511== 
+==7511== D   refs:      28,840,611,475  (26,585,924,096 rd   + 2,254,687,379 wr)
+==7511== D1  misses:        19,349,275  (    19,153,532 rd   +       195,743 wr)
+==7511== LLd misses:         3,518,174  (     3,322,470 rd   +       195,704 wr)
+==7511== D1  miss rate:            0.1% (           0.1%     +           0.0%  )
+==7511== LLd miss rate:            0.0% (           0.0%     +           0.0%  )
+==7511== 
+==7511== LL refs:           19,350,374  (    19,154,631 rd   +       195,743 wr)
+==7511== LL misses:          3,519,268  (     3,323,564 rd   +       195,704 wr)
+==7511== LL miss rate:             0.0% (           0.0%     +           0.0%  )
+tommaso@DANTEALIGHIERI:~/Documenti/Università/ACA$ valgrind --tool=cachegrind ./normalconv22
+==7598== Cachegrind, a cache and branch-prediction profiler
+==7598== Copyright (C) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
+==7598== Using Valgrind-3.12.0.SVN and LibVEX; rerun with -h for copyright info
+==7598== Command: ./normalconv22
+==7598== 
+--7598-- warning: L3 cache found, using its data for the LL simulation.
+tempo convoluzione normale = 343.187192
+==7598== 
+==7598== I   refs:      40,371,039,999
+==7598== I1  misses:             1,064
+==7598== LLi misses:             1,060
+==7598== I1  miss rate:           0.00%
+==7598== LLi miss rate:           0.00%
+==7598== 
+==7598== D   refs:      14,437,673,257  (13,109,988,782 rd   + 1,327,684,475 wr)
+==7598== D1  misses:        18,772,228  (    18,584,113 rd   +       188,115 wr)
+==7598== LLd misses:         3,440,731  (     3,252,655 rd   +       188,076 wr)
+==7598== D1  miss rate:            0.1% (           0.1%     +           0.0%  )
+==7598== LLd miss rate:            0.0% (           0.0%     +           0.0%  )
+==7598== 
+==7598== LL refs:           18,773,292  (    18,585,177 rd   +       188,115 wr)
+==7598== LL misses:          3,441,791  (     3,253,715 rd   +       188,076 wr)
+==7598== LL miss rate:             0.0% (           0.0%     +           0.0%  )
+tommaso@DANTEALIGHIERI:~/Documenti/Università/ACA$ gcc winoConv33.c -o winoconv33
+tommaso@DANTEALIGHIERI:~/Documenti/Università/ACA$ valgrind --tool=cachegrind ./winoconv33
+==7633== Cachegrind, a cache and branch-prediction profiler
+==7633== Copyright (C) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
+==7633== Using Valgrind-3.12.0.SVN and LibVEX; rerun with -h for copyright info
+==7633== Command: ./winoconv33
+==7633== 
+--7633-- warning: L3 cache found, using its data for the LL simulation.
+tempo convoluzione wino = 232.528018
+
+==7633== 
+==7633== I   refs:      25,800,921,571
+==7633== I1  misses:             1,262
+==7633== LLi misses:             1,258
+==7633== I1  miss rate:           0.00%
+==7633== LLi miss rate:           0.00%
+==7633== 
+==7633== D   refs:       7,171,907,394  (6,700,850,666 rd   + 471,056,728 wr)
+==7633== D1  misses:        29,729,799  (   26,294,945 rd   +   3,434,854 wr)
+==7633== LLd misses:        12,356,781  (    8,921,966 rd   +   3,434,815 wr)
+==7633== D1  miss rate:            0.4% (          0.4%     +         0.7%  )
+==7633== LLd miss rate:            0.2% (          0.1%     +         0.7%  )
+==7633== 
+==7633== LL refs:           29,731,061  (   26,296,207 rd   +   3,434,854 wr)
+==7633== LL misses:         12,358,039  (    8,923,224 rd   +   3,434,815 wr)
+==7633== LL miss rate:             0.0% (          0.0%     +         0.7%  )
+tommaso@DANTEALIGHIERI:~/Documenti/Università/ACA$ valgrind --tool=cachegrind ./winoconv22
+==7662== Cachegrind, a cache and branch-prediction profiler
+==7662== Copyright (C) 2002-2015, and GNU GPL'd, by Nicholas Nethercote et al.
+==7662== Using Valgrind-3.12.0.SVN and LibVEX; rerun with -h for copyright info
+==7662== Command: ./winoconv22
+==7662== 
+--7662-- warning: L3 cache found, using its data for the LL simulation.
+tempo convoluzione wino = 140.910544
+==7662== 
+==7662== I   refs:      17,086,439,809
+==7662== I1  misses:             1,139
+==7662== LLi misses:             1,134
+==7662== I1  miss rate:           0.00%
+==7662== LLi miss rate:           0.00%
+==7662== 
+==7662== D   refs:       5,670,198,917  (5,311,888,595 rd   + 358,310,322 wr)
+==7662== D1  misses:        24,013,905  (   20,692,998 rd   +   3,320,907 wr)
+==7662== LLd misses:        10,564,517  (    7,243,649 rd   +   3,320,868 wr)
+==7662== D1  miss rate:            0.4% (          0.4%     +         0.9%  )
+==7662== LLd miss rate:            0.2% (          0.1%     +         0.9%  )
+==7662== 
+==7662== LL refs:           24,015,044  (   20,694,137 rd   +   3,320,907 wr)
+==7662== LL misses:         10,565,651  (    7,244,783 rd   +   3,320,868 wr)
+==7662== LL miss rate:             0.0% (          0.0%     +         0.9%  )
+tommaso@DANTEALIGHIERI:~/Documenti/Università/ACA$ 
+
